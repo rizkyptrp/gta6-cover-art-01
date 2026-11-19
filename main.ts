@@ -19,6 +19,12 @@ import { buildDossier } from './vendor/makefun-app.ts';
 const here = fileURLToPath(new URL('.', import.meta.url));
 const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
+// Guard the handoff in my own words: refuse a run whose app entry point is
+// missing instead of writing an /output the gate would reject as empty.
+if (!existsSync(join(here, 'app', 'index.html'))) {
+  throw new Error('refusing to hand in an entry with no app/index.html');
+}
+
 mkdirSync(out, { recursive: true });
 cpSync(join(here, 'app'), join(out, 'app'), { recursive: true });
 mkdirSync(join(out, 'screenshots'), { recursive: true });

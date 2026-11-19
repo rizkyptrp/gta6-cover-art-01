@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Coast Cover Studio — GTA-style cover maker</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VC</span>
+    <div>
+      <h1>Vice Coast Cover Studio</h1>
+      <p>Turn your photo into a neon-sunset poster cover. Photos never leave your machine.</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="demoBtn" class="btn ghost" type="button">Load demo photos</button>
+    <button id="resetBtn" class="btn ghost" type="button">Reset</button>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="controls" aria-label="Cover controls">
+    <div class="group">
+      <h2>1 · Your photos</h2>
+      <label class="file-label" for="photoInput">+ Add photos from your device</label>
+      <input id="photoInput" type="file" accept="image/*" multiple>
+      <div id="tray" class="tray" aria-label="Uploaded photos"></div>
+      <p class="hint">Click a photo in the tray, then click a panel in the preview to put it there. Drag a panel to reposition its photo.</p>
+      <button id="fillAllBtn" class="btn" type="button">Fill every panel with the first photo</button>
+    </div>
+
+    <div class="group">
+      <h2>2 · Layout</h2>
+      <div class="seg" id="layoutSeg" role="group" aria-label="Poster layout">
+        <button type="button" data-layout="grid4" class="active">Four-panel grid</button>
+        <button type="button" data-layout="hero3">Hero + three</button>
+        <button type="button" data-layout="single">Full-bleed photo</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>3 · Caption</h2>
+      <label class="field-label" for="titleInput">Title</label>
+      <input id="titleInput" type="text" value="Sunset Heist" maxlength="28" autocomplete="off">
+      <label class="field-label" for="subInput">Subtitle</label>
+      <input id="subInput" type="text" value="one last ride down the coast" maxlength="48" autocomplete="off">
+      <div class="row">
+        <div>
+          <label class="field-label" for="titleSize">Title size</label>
+          <input id="titleSize" type="range" min="40" max="120" value="84">
+        </div>
+        <div>
+          <label class="field-label" for="letterStyle">Lettering</label>
+          <select id="letterStyle">
+            <option value="sunset">Sunset gradient</option>
+            <option value="white">Bold white</option>
+            <option value="neon">Neon pink</option>
+            <option value="ink">Black ink</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>4 · Colour grade</h2>
+      <div class="seg wrap" id="gradeSeg" role="group" aria-label="Colour grade">
+        <button type="button" data-grade="sunset" class="active">Vice Sunset</button>
+        <button type="button" data-grade="neon">Neon Night</button>
+        <button type="button" data-grade="palm">Palm Teal</button>
+        <button type="button" data-grade="gold">Golden Hour</button>
+      </div>
+      <label class="check"><input id="grainToggle" type="checkbox" checked> Film grain + vignette</label>
+      <label class="check"><input id="frameToggle" type="checkbox" checked> White poster frame + badge</label>
+    </div>
+
+    <div class="group">
+      <h2>5 · Selected panel</h2>
+      <p class="hint" id="panelLabel">Panel 1 — the big hero panel. Click any panel in the preview to select it.</p>
+      <label class="field-label" for="zoomInput">Zoom</label>
+      <input id="zoomInput" type="range" min="100" max="260" value="100">
+      <div class="row">
+        <button id="centerBtn" class="btn small" type="button">Centre photo</button>
+        <button id="swapBtn" class="btn small" type="button">Next photo in panel</button>
+      </div>
+    </div>
+
+    <div class="group export">
+      <h2>6 · Export PNG</h2>
+      <div class="export-btns">
+        <button type="button" class="btn export-btn" data-export="1080x1080">Square<br><span>1080 × 1080</span></button>
+        <button type="button" class="btn export-btn" data-export="1080x1350">Portrait<br><span>1080 × 1350</span></button>
+        <button type="button" class="btn export-btn" data-export="1920x1080">Landscape<br><span>1920 × 1080</span></button>
+      </div>
+      <p class="hint">One click, one PNG, saved straight to your downloads.</p>
+    </div>
+  </section>
+
+  <section class="stage" aria-label="Live preview">
+    <div class="stage-head">
+      <span>Live preview</span>
+      <span id="sizeLabel">1080 × 1080</span>
+    </div>
+    <canvas id="preview" width="900" height="900"></canvas>
+    <p class="stage-hint">Drag inside a panel to move its photo · scroll over a panel to zoom · click a panel to select it</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Vice Coast Cover Studio — an original poster maker. No game logos, artwork or fonts. Made with your own photos, offline.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

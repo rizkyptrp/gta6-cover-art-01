@@ -1,0 +1,120 @@
+/* Vice Coast Cover Studio — editor chrome. All original, system fonts only. */
+:root {
+  --ink: #14101c;
+  --paper: #fff7ee;
+  --panel: #ffffff;
+  --line: #e8d9c8;
+  --pink: #ff2e88;
+  --orange: #ff7a1a;
+  --teal: #0fb5a6;
+  --violet: #7b2fff;
+  --muted: #6b5d6e;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+.topbar {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 14px 22px;
+  background: linear-gradient(90deg, #2b0a3d, #7b2fff 45%, #ff2e88 78%, #ff7a1a);
+  color: #fff;
+}
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand-mark {
+  display: grid; place-items: center;
+  width: 52px; height: 52px; border: 3px solid #fff; border-radius: 10px;
+  font-weight: 900; font-size: 22px; letter-spacing: 1px;
+  transform: rotate(-4deg);
+  background: rgba(255, 255, 255, 0.14);
+}
+.topbar h1 { margin: 0; font-size: 24px; letter-spacing: 0.5px; text-transform: uppercase; }
+.topbar p { margin: 2px 0 0; font-size: 13px; opacity: 0.92; }
+.top-actions { display: flex; gap: 8px; }
+.btn {
+  font: inherit; cursor: pointer; border: 2px solid var(--ink); border-radius: 10px;
+  background: #fff; color: var(--ink); padding: 9px 14px; font-weight: 700;
+}
+.btn:hover { background: #ffe9f3; }
+.btn.ghost { background: rgba(255, 255, 255, 0.16); color: #fff; border-color: #fff; }
+.btn.ghost:hover { background: rgba(255, 255, 255, 0.32); }
+.btn.small { padding: 7px 10px; font-size: 13px; flex: 1; }
+.btn.active, .seg button.active {
+  background: var(--ink); color: #fff;
+}
+.layout {
+  display: grid; grid-template-columns: 340px 1fr; gap: 20px;
+  max-width: 1240px; margin: 0 auto; padding: 20px;
+}
+.controls { display: flex; flex-direction: column; gap: 16px; }
+.group {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+  padding: 14px 16px;
+}
+.group h2 { margin: 0 0 10px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--violet); }
+.field-label { display: block; font-size: 12px; font-weight: 700; margin: 8px 0 4px; color: var(--muted); }
+input[type="text"], select {
+  width: 100%; font: inherit; padding: 8px 10px;
+  border: 2px solid var(--line); border-radius: 8px; background: #fff;
+}
+input[type="text"]:focus, select:focus { outline: none; border-color: var(--pink); }
+input[type="range"] { width: 100%; accent-color: var(--pink); }
+input[type="file"] { display: none; }
+.file-label {
+  display: block; text-align: center; cursor: pointer;
+  background: linear-gradient(90deg, var(--pink), var(--orange));
+  color: #fff; font-weight: 800; padding: 10px; border-radius: 10px;
+}
+.tray { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; min-height: 8px; }
+.tray img {
+  width: 64px; height: 64px; object-fit: cover; border-radius: 8px;
+  border: 3px solid transparent; cursor: pointer;
+}
+.tray img.selected { border-color: var(--pink); }
+.tray img:hover { transform: scale(1.05); }
+.hint { font-size: 12.5px; color: var(--muted); line-height: 1.45; margin: 8px 0; }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button {
+  font: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+  border: 2px solid var(--ink); border-radius: 999px; background: #fff; padding: 7px 12px;
+}
+.seg button:hover { background: #ffe9f3; }
+.row { display: flex; gap: 10px; }
+.row > div { flex: 1; }
+.check { display: block; font-size: 13.5px; font-weight: 600; margin-top: 10px; cursor: pointer; }
+.check input { accent-color: var(--pink); margin-right: 6px; }
+.export-btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.export-btn {
+  background: linear-gradient(160deg, var(--violet), var(--pink));
+  color: #fff; border: none; padding: 12px 6px; line-height: 1.25;
+}
+.export-btn span { font-size: 12px; font-weight: 600; opacity: 0.92; }
+.export-btn:hover { filter: brightness(1.12); background: linear-gradient(160deg, var(--violet), var(--pink)); }
+.stage { min-width: 0; }
+.stage-head {
+  display: flex; justify-content: space-between; font-weight: 800; font-size: 14px;
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
+}
+.stage-head span:last-child { color: var(--pink); }
+#preview {
+  width: 100%; height: auto; display: block; border-radius: 6px;
+  box-shadow: 0 14px 40px rgba(43, 10, 61, 0.35); cursor: grab;
+  background: #1a0b2e; touch-action: none;
+}
+#preview:active { cursor: grabbing; }
+.stage-hint { text-align: center; font-size: 12.5px; color: var(--muted); }
+.foot { text-align: center; color: var(--muted); font-size: 12.5px; padding: 6px 20px 22px; }
+/* Full-cover shot mode: hide the editor, the canvas is the cover. */
+body.shot { background: #000; }
+body.shot .topbar, body.shot .controls, body.shot .foot,
+body.shot .stage-head, body.shot .stage-hint { display: none; }
+body.shot .layout { display: block; max-width: none; padding: 0; margin: 0; }
+body.shot .stage { margin: 0; }
+body.shot #preview { width: 100vw; height: 100vh; object-fit: contain; border-radius: 0; box-shadow: none; }
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; }
+  .topbar { flex-direction: column; align-items: flex-start; }
+}
